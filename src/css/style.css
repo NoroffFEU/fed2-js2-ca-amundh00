@@ -1,1 +1,65 @@
 @import url(_reset.css);
+
+#registerForm > div{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin: 10px;
+   padding: 5px;
+  }
+
+  #registerForm > div > input{
+    width: 200px;
+    height: 25px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 15px;
+    padding: 5px;
+  }
+
+  #registerForm > div > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: none;
+    background-color: lightgreen;
+    padding: 10px;
+    cursor: pointer;
+    width: 150px;
+    margin: 10px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  #registerForm > div > button:hover{
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); /* Initial shadow effect */
+    animation: glow 1.5s infinite alternate;
+  }
+
+
+  #registerForm > div > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: none;
+    background-color: lightgray;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    width: 150px;
+    margin: 10px;
+    height: 40px;
+  }
+
+#registerMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
