@@ -7,3 +7,5 @@ async function init() {
   }
 
 init();
+
+console.log(localStorage)

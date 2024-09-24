@@ -2,8 +2,8 @@
 
 // Function to handle registration
 export async function register({ name, email, password }) {
-  const url = 'https://v2.api.noroff.dev/auth/register'; // Replace with the correct register endpoint
-
+  const url = 'https://v2.api.noroff.dev/auth/register'; 
+  
   try {
     const response = await fetch(url, {
       method: 'POST',
