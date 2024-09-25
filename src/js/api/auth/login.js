@@ -20,8 +20,9 @@ export async function login({ email, password }) {
     const responseData = await response.json();
     const accessToken = responseData.data.accessToken;
 
+    console.log('Access Token:', accessToken);
     // Save the access token in local storage
-    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('token', accessToken);
 
     // Redirect to another page after successful login
     window.location.href = '/index.html';
