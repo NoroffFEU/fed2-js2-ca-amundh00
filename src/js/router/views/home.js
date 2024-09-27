@@ -1,5 +1,6 @@
 import { authGuard } from "../../utilities/authGuard";
-import { headers } from '../api/headers.js'; // Adjust path based on the structure
+import { headers } from '../../api/headers.js'; // Go up two levels to reach 'api'
+
 
 
 authGuard();
