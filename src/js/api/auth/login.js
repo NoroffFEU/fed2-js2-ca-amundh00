@@ -25,7 +25,7 @@ export async function login({ email, password }) {
     console.log('User Name:', name);
     // Save the access token in local storage
     localStorage.setItem('token', accessToken);
-    localStorage.setItem('userName', name)
+    localStorage.setItem('userName', name);
 
     // Redirect to another page after successful login
     window.location.href = '/';

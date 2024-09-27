@@ -1,24 +1,18 @@
 import { authGuard } from "../../utilities/authGuard";
-import { readProfile } from '../../api/profile/read';
+authGuard(); 
 
-// Event listener for the "My Profile" button
+// profile.js
+import { readProfile } from '../../api/profile/read.js'; 
+
 document.addEventListener('DOMContentLoaded', () => {
-    const profileButton = document.getElementById('myProfile');
-    
-    if (profileButton) {
-      profileButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const username = localStorage.getItem('userName');
-        if (!username) {
-          alert('No username found. Please log in.');
-          return;
-        }
-        window.location.href = `/profile/?username=${username}`;
-      });
-    }
-  });
+  const params = new URLSearchParams(window.location.search);
+  const username = params.get('username');
 
-readProfile();
-authGuard();
-
-
+  if (username) {
+    readProfile(username);
+  } else {
+    console.error('No username found in URL');
+    alert('Please log in to view your profile.');
+    window.location.href = '/auth/login/';
+  }
+});
