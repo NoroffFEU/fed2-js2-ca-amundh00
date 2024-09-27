@@ -1,6 +1,3 @@
-// views/login.js
-
-// Import the login function from the auth module
 import { login } from "../../api/auth/login";
 
 // This function handles the form submission and calls the login function
