@@ -1,41 +1,58 @@
-// readProfile.js
-import { API_SOCIAL_PROFILES } from "../constants.js";
-import { API_KEY } from "../constants";
-import { headers } from "../../api/headers";
+import { headers } from '../../api/headers.js'; 
+import { API_SOCIAL_PROFILES } from '../../api/constants.js'; 
+import { getActiveUser } from "../../utilities/activeUser.js"; 
 
-// read.js
-export async function readProfile(userName) {
-    const apiUrl = `https://v2.api.noroff.dev/social/profiles/${userName}`;
-  
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: headers(), // Use the headers function
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to fetch profile data');
-      }
-  
-      const profileData = await response.json();
-      displayProfileInfo(profileData.data);
-    } catch (error) {
-      console.error('Error fetching profile data:', error.message);
+export async function fetchProfileData() {
+    const username = getActiveUser(); 
+    //console.log('Active user:', username); 
+
+    if (!username) {
+        //console.error('Ingen username funnet. Kan ikke hente profil.');
+        return null;
     }
-  }
-  
-    
-  // Function to display profile information on the page
-  function displayProfileInfo(data) {
-    document.getElementById('profile-info').innerHTML = `
-      <h2>${data.name}</h2>
-      <img src="${data.banner.url}" alt="${data.banner.alt}" />
-      <img src="${data.avatar.url}" alt="${data.avatar.alt}" />
-      <p>${data.bio}</p>
-      <p>Followers: ${data._count.followers}</p>
-      <p>Following: ${data._count.following}</p>
-      <p>Posts: ${data._count.posts}</p>
-    `;
-  }
 
-  
+    const apiUrl = `${API_SOCIAL_PROFILES}/${username}`; 
+    //console.log('Henter profil fra:', apiUrl); 
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: headers(), 
+        });
+
+        if (!response.ok) {
+            //console.error('Response status:', response.status); 
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const profileData = await response.json();
+        //console.log('Hentet profil data:', profileData); 
+        return profileData.data; 
+    } catch (error) {
+        //console.error('Error fetching user profile:', error.message);
+    }
+}
+
+export function displayProfileInfo(profileData) {
+    //console.log('Profil vises:', profileData);
+
+    if (!profileData) {
+        //console.error('Profile data is undefined.'); 
+        return; 
+    }
+
+    document.getElementById('profile-info').innerHTML = `
+        <div>
+            <h2>${profileData.name}</h2>
+            <div id="profileBanner">
+                <img src="${profileData.banner.url}" alt="${profileData.banner.alt}" />
+            </div>
+            <img id="profilePhoto" src="${profileData.avatar.url}" alt="${profileData.avatar.alt}" />
+            <p>Email: ${profileData.email}</p>
+            <p>Bio: ${profileData.bio}</p>
+            <p>Followers: ${profileData._count.followers}</p>
+            <p>Following: ${profileData._count.following}</p>
+            <p>Posts: ${profileData._count.posts}</p>
+        </div>
+    `;
+}

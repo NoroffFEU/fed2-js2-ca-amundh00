@@ -1,18 +1,16 @@
 import { authGuard } from "../../utilities/authGuard";
+import { fetchProfileData, displayProfileInfo } from "../../api/profile/read.js"; 
+
 authGuard(); 
 
-// profile.js
-import { readProfile } from '../../api/profile/read.js'; 
+document.addEventListener('DOMContentLoaded', async () => {
+    //console.log('DOM fully loaded and parsed');
+    const profileData = await fetchProfileData(); 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const username = params.get('username');
-
-  if (username) {
-    readProfile(username);
-  } else {
-    console.error('No username found in URL');
-    alert('Please log in to view your profile.');
-    window.location.href = '/auth/login/';
-  }
+    if (profileData) {
+        //console.log('Profile data found:', profileData); 
+        displayProfileInfo(profileData); // Call display only if profileData exists
+    } else {
+        //console.error('Failed to retrieve profile data.'); 
+    }
 });

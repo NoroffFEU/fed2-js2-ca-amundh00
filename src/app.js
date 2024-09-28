@@ -19,20 +19,3 @@ document.addEventListener('DOMContentLoaded', () => {
     logOutButton.addEventListener('click', logOut);
   }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-  const profileButton = document.getElementById('myProfile');
-  
-  if (profileButton) {
-    profileButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      const username = localStorage.getItem('userName');
-      if (!username) {
-        alert('No username found. Please log in.');
-        return;
-      }
-      // Redirect to profile page with username in URL
-      window.location.href = `/profile/index.html?username=${username}`;
-    });
-  }
-});

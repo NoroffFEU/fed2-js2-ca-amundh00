@@ -9,20 +9,28 @@
   </head>
 
   <body>
-    <h1>Login</h1>
-    <form id="loginForm" name="login">
-      <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" required />
-      </div>
+    <main class="main">
+      <a href="/">
+        <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+      </a>
+      <h1>Login</h1>
+      <form id="form" name="login">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required />
+        </div>
 
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required />
-      </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
 
-      <a href="/auth/register/">Register</a>
-      <button>Login</button>
-    </form>
+        <div>
+          <a href="/auth/register/">Register</a>
+          <button>Login</button>
+        </div>
+        
+      </form>
+    </main>
   </body>
 </html>
