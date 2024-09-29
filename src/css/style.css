@@ -65,6 +65,34 @@
 }
 
 /*************
+   Homepage
+**************/
+
+#posts{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#posts > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  width: 70vw;
+}
+
+#posts > div > img{
+  max-width: 50vw;
+  height: auto;
+}
+
+/*************
 Profile photo
 **************/
 
