@@ -2,7 +2,7 @@
 export function getActiveUser() {
     const username = localStorage.getItem('userName');
     if (!username) {
-      console.error('No username found in local storage.');
+      //console.error('No username found in local storage.');
     }
     return username; // Return the username or null
   }

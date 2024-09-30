@@ -5,40 +5,46 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js" defer></script>
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/js/router/views/postEdit.js" defer></script>
   </head>
 
   <body>
-    <h1>Edit Post</h1>
+      <main>
+        <a href="/">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+        </a>
+        <h1>Edit Post</h1>
 
-    <form name="editPost">
-      <div>
-          <label for="title">Title (Required)</label>
-          <input type="text" id="title" name="title" required/>
-      </div>
-  
-      <div>
-          <label for="body">Body (Optional)</label>
-          <textarea name="body" id="body"></textarea>
-      </div>
-  
-      <div>
-          <label for="tags">Tags (Optional)</label>
-          <input type="text" id="tags" name="tags"/>
-      </div>
-  
-      <div>
-          <label for="mediaUrl">Image URL (Optional)</label>
-          <input type="url" id="mediaUrl" name="mediaUrl"/>
-      </div>
-  
-      <div>
-          <label for="mediaAlt">Image Alt text (Optional)</label>
-          <input type="text" id="mediaAlt" name="mediaAlt"/>
-      </div>
-  
-      <button id="submitPost" type="submit">Update Post</button>
-    </form>
-  
+        <form id="editPostForm">
+          <div>
+              <label for="title">Title (Required)</label>
+              <input type="text" id="editTitle" name="title" required/>
+          </div>
+      
+          <div>
+              <label for="body">Body (Optional)</label>
+              <textarea name="body" id="editBody"></textarea>
+          </div>
+      
+          <div>
+              <label for="tags">Tags (Optional)</label>
+              <input type="text" id="editTags" name="tags"/>
+          </div>
+      
+          <div>
+              <label for="mediaUrl">Image URL (Optional)</label>
+              <input type="url" id="editMediaUrl" name="mediaUrl"/>
+          </div>
+      
+          <div>
+              <label for="mediaAlt">Image Alt text (Optional)</label>
+              <input type="text" id="editMediaAlt" name="mediaAlt"/>
+          </div>
+      
+          <button type="submit">Save Changes</button>
+      </form>
+    
+    </main>
   </body>
 </html>

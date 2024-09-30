@@ -1,6 +1,16 @@
 import { login } from "../../api/auth/login";
 
-// This function handles the form submission and calls the login function
+/**
+ * Handles the form submission event for user login.
+ *
+ * This function prevents the default form submission behavior, extracts the email and password
+ * values from the form, and calls the login function with the provided credentials.
+ *
+ * @async
+ * @function onLogin
+ * @param {Event} event - The form submission event.
+ * @returns {Promise<void>} Resolves after the login function is called.
+ */
 async function onLogin(event) {
   event.preventDefault(); // Prevent the default form submission behavior
 
