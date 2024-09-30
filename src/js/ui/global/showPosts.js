@@ -66,8 +66,6 @@ function displayPosts(posts) {
         <p>${post.body}</p>
         <img src="${mediaUrl}" alt="${mediaAlt}" />
         <p>Tags: ${post.tags.join(', ')}</p>
-        <p>Comments: ${post._count.comments}</p>
-        <p>Reactions: ${post._count.reactions}</p>
         <p>Created: ${new Date(post.created).toLocaleDateString()}</p>
         <p>Updated: ${new Date(post.updated).toLocaleDateString()}</p>
       `;

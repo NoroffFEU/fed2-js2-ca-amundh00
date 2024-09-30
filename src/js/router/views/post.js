@@ -66,14 +66,19 @@ function displayPost(post) {
 
     // Create the HTML structure for the post
     postDetailsContainer.innerHTML = `
-        <h2>${post.title}</h2>
-        <img src="${mediaUrl}" alt="${mediaAlt}" class="post-image" />
-        <p>${post.body}</p>
-        <p><strong>Tags:</strong> ${tags}</p>
-        <p><strong>Comments:</strong> ${commentsCount}</p>
-        <p><strong>Reactions:</strong> ${reactionsCount}</p>
-        <p><strong>Created:</strong> ${new Date(post.created).toLocaleDateString()}</p>
-        <p><strong>Updated:</strong> ${new Date(post.updated).toLocaleDateString()}</p>
+        <div>
+            <div>
+                <h2>${post.title}</h2>
+                <img src="${mediaUrl}" alt="${mediaAlt}" class="post-image" />
+            </div>
+            
+            <div>
+                <p>Description: ${post.body}</p>
+                <p><strong>Tags:</strong> ${tags}</p>
+                <p><strong>Created:</strong> ${new Date(post.created).toLocaleDateString()}</p>
+                <p><strong>Updated:</strong> ${new Date(post.updated).toLocaleDateString()}</p>
+            </div>
+        </div>
     `;
 }
 
