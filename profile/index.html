@@ -5,13 +5,26 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/app.js" defer></script>
+    <script type="module" src="/src/js/router/views/profile.js" defer></script>
+
   </head>
   <body>
-    <h1>Profile</h1>
+    <main>
+      <a href="/">
+        <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+      </a>
+      
+      <h1>Profile</h1>
+      <div id="profile-info"></div>
 
-    <form name="updateProfile">
-      <button>Update Profile</button>
-    </form>
+      <div class="posts">
+
+      </div>
+
+      <form name="updateProfile">
+        <button>Update Profile</button>
+      </form>
+    </main>
   </body>
 </html>
