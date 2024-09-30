@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/ui/global/showPosts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/ui/global/showPosts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { headers } from '../../api/headers.js'; 
+
+/**
+ * Fetches all posts from the API and displays the latest 12 on the page.
+ *
+ * This function sends a GET request to the API to retrieve all posts.
+ * If successful, it calls `displayPosts()` to render the posts on the page.
+ * 
+ * @async
+ * @function fetchAllPosts
+ * @returns {Promise&lt;void>} Resolves after the posts are fetched and displayed.
+ * @throws {Error} Throws an error if the request to fetch posts fails.
+ */
+export async function fetchAllPosts() {
+    const apiUrl = 'https://v2.api.noroff.dev/social/posts';
+  
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: headers(),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+  
+      const data = await response.json();
+  
+      // Display only the latest 12 posts
+      const latestPosts = data.data.slice(0, 12);
+      displayPosts(latestPosts);
+    } catch (error) {
+      // Handle the error (could log it or display an error message in the UI)
+      console.error('Error fetching posts:', error);
+    }
+}
+
+/**
+ * Displays the list of posts in the DOM.
+ *
+ * This function takes an array of post objects, creates a new DOM element for each post,
+ * and appends them to the `.posts` container. It includes information like the post's title,
+ * body, media, tags, comments count, reactions count, and created/updated dates.
+ *
+ * @function displayPosts
+ * @param {Array&lt;Object>} posts - An array of post objects to display.
+ */
+function displayPosts(posts) {
+    const postsContainer = document.querySelector('.posts');  // Using querySelector for an element with a class
+
+    // Clear any existing content in the posts container
+    postsContainer.innerHTML = '';
+  
+    // Loop through the posts and create DOM elements for each
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.classList.add('post');
+  
+      // Determine the media URL and alt text (fallback to placeholder if no media exists)
+      const mediaUrl = post.media ? post.media.url : 'https://via.placeholder.com/150'; 
+      const mediaAlt = post.media ? post.media.alt : 'Default Alt Text'; 
+  
+      // Create the inner HTML structure for each post (keeping the original structure and classes)
+      postElement.innerHTML = `
+        &lt;h3>${post.title}&lt;/h3>
+        &lt;p>${post.body}&lt;/p>
+        &lt;img src="${mediaUrl}" alt="${mediaAlt}" />
+        &lt;p>Tags: ${post.tags.join(', ')}&lt;/p>
+        &lt;p>Created: ${new Date(post.created).toLocaleDateString()}&lt;/p>
+        &lt;p>Updated: ${new Date(post.updated).toLocaleDateString()}&lt;/p>
+      `;
+      
+      // Wrap the post content inside a clickable link (without changing existing classes)
+      const postLink = document.createElement('a');
+      postLink.href = `/post/?id=${post.id}`;
+      postLink.classList.add('post-link');  // Add this class for styling the clickable area
+      
+      postLink.appendChild(postElement);  // Wrap the post element in the link
+      
+      // Append the post element to the container
+      postsContainer.appendChild(postLink);
+    });
+}
+
+// Fetch and display all posts when the page loads
+fetchAllPosts();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:DOMContentLoaded">DOMContentLoaded</a></li><li><a href="global.html#event:submit">submit</a></li></ul><h3>Global</h3><ul><li><a href="global.html#deletePost">deletePost</a></li><li><a href="global.html#displayPost">displayPost</a></li><li><a href="global.html#displayPosts">displayPosts</a></li><li><a href="global.html#fetchAllPosts">fetchAllPosts</a></li><li><a href="global.html#fetchPostById">fetchPostById</a></li><li><a href="global.html#form">form</a></li><li><a href="global.html#getPostIdFromUrl">getPostIdFromUrl</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#onCreatePost">onCreatePost</a></li><li><a href="global.html#onEditPost">onEditPost</a></li><li><a href="global.html#onLogin">onLogin</a></li><li><a href="global.html#populateEditForm">populateEditForm</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#showMakePostButton">showMakePostButton</a></li><li><a href="global.html#updatePost">updatePost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Sep 30 2024 18:05:51 GMT+0200 (sentraleuropeisk sommertid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
