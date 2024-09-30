@@ -29,7 +29,8 @@ export async function fetchAllPosts() {
   
   
   function displayPosts(posts) {
-    const postsContainer = document.getElementById('posts');
+    const postsContainer = document.querySelector('.posts');  // Using querySelector for an element with a class
+
     postsContainer.innerHTML = '';
   
     posts.forEach(post => {
