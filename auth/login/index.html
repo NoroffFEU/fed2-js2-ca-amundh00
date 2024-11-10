@@ -2,34 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
     <script type="module" src="/src/app.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
 
-  <body>
-    <main class="main">
-      <a href="/">
-        <img src="/images/noroff-logo.png" alt="Noroff Logo" />
+  <body class="bg-gray-900 text-white font-sans flex items-center justify-center min-h-screen">
+    <main class="main bg-gray-800 bg-opacity-50 border border-purple-600 shadow-xl rounded-lg p-8 w-full max-w-md">
+      <a href="/" class="flex justify-center mb-6">
+        <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-12 filter brightness-125" />
       </a>
-      <h1>Login</h1>
-      <form id="form" name="login">
+      <h1 class="text-2xl font-bold text-center text-purple-400 mb-6">Login</h1>
+      
+      <form id="form" name="login" class="space-y-6">
         <div>
-          <label for="email">Email</label>
-          <input id="email" type="email" name="email" required />
+          <label for="email" class="block text-sm font-medium text-purple-300">Email</label>
+          <input id="email" type="email" name="email" required 
+                 class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white border border-purple-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
         </div>
 
         <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" required />
+          <label for="password" class="block text-sm font-medium text-purple-300">Password</label>
+          <input type="password" name="password" id="password" required 
+                 class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white border border-purple-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
         </div>
 
-        <div>
-          <a href="/auth/register/">Register</a>
-          <button>Login</button>
+        <div class="flex items-center justify-between">
+          <a href="/auth/register/" class="text-sm text-purple-400 hover:text-purple-500">Register</a>
+          <button type="submit" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-md shadow hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            Login
+          </button>
         </div>
-        
       </form>
     </main>
   </body>
