@@ -12,13 +12,33 @@ let accountDiv = document.getElementById("account");
  */
 export async function showMakePostButton() {
     const makePostButton = document.createElement('button');
-    makePostButton.textContent = 'Make Post';
+    makePostButton.textContent = '+ Create Post';
+    
+    // Add Tailwind classes for styling
+    makePostButton.className = `
+        group relative inline-flex items-center px-6 py-2 
+        border-2 border-purple-500 rounded-lg 
+        bg-gradient-to-r from-purple-600/50 to-purple-800/50 
+        text-white font-semibold shadow-lg 
+        transition-all duration-300 ease-in-out
+        hover:from-purple-500/60 hover:to-purple-700/60
+        hover:scale-105 hover:shadow-purple-500/25
+        hover:border-purple-400
+    `;
 
-    // Redirect to post creation page on button click
+    // Keep existing click handler
     makePostButton.addEventListener('click', function() {
         window.location.href = '../post/create/';
     });
 
-    // Append the button to the accountDiv
+    // Create glow effect element
+    const glowEffect = document.createElement('div');
+    glowEffect.className = `
+        absolute inset-0 rounded-lg opacity-0 
+        group-hover:opacity-100 transition-opacity duration-300
+        bg-gradient-to-r from-purple-600/10 to-blue-500/10
+    `;
+    makePostButton.appendChild(glowEffect);
+
     accountDiv.appendChild(makePostButton);
 }
