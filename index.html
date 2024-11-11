@@ -3,29 +3,47 @@
 
 <head>
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noroff FED2 JS2 CA</title>
+  <title>Noroff FED2 JS2 CA - Home</title>
   <script type="module" src="/src/app.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <main>
-    <a href="/">
-      <img src="/images/noroff-logo.png" alt="Noroff Logo" />
-    </a>
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+  <main class="container mx-auto px-4 py-8">
+    <!-- Header section with centered content -->
+    <div class="max-w-4xl mx-auto mb-12">
+      <a href="/" class="flex justify-center mb-8">
+        <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-12 filter brightness-125" />
+      </a>
 
+      <h1 class="text-3xl font-bold text-center text-purple-400 mb-8">Home</h1>
 
-    <h1>Home</h1>
+      <div class="flex justify-center space-x-4 mb-8">
+        <a id="myProfile" href="/profile/" class="text-purple-400 hover:text-purple-500 transition ease-in-out duration-150">My Profile</a>
+        <a href="/auth/login/" class="text-purple-400 hover:text-purple-500 transition ease-in-out duration-150">Login</a>
+        <a href="/auth/register/" class="text-purple-400 hover:text-purple-500 transition ease-in-out duration-150">Register</a>
+        <button id="logOutButton" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition ease-in-out duration-150">Logout</button>
+      </div>
 
-    <a id="myProfile" href="/profile/">My Profile</a>
-    <a href="/auth/login/">Login</a>
-    <a href="/auth/register/">Register</a>
-    <button id="logOutButton">Logout</button>
-    <div id="account">      
+      <div id="account" class="mb-8 text-center text-sm text-purple-300">
+        <!-- Account details will be injected here -->
+      </div>
     </div>
 
-    <div class="posts"></div>
+    <!-- Posts grid with wider layout -->
+    <div class="posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 max-w-[1920px] mx-auto">
+      <!-- Example post -->
+      <div class="p-4 bg-gray-800 bg-opacity-50 border border-purple-600 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-2xl">
+        <div class="w-full flex justify-center mb-4">
+          <div class="w-[300px] h-[200px] overflow-hidden rounded-lg">
+            <img src="" alt="" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <h2 class="text-lg font-bold text-purple-400">Post Title</h2>
+        <p class="text-sm text-purple-300">This is an example of a post in a cyberpunk-themed style.</p>
+      </div>
+    </div>
   </main>
 </body>
 </html>

@@ -2,29 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
     <script type="module" src="/src/app.js" defer></script>
     <script type="module" src="/src/js/router/views/profile.js" defer></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body>
-    <main>
-      <a href="/">
-        <img src="/images/noroff-logo.png" alt="Noroff Logo" />
-      </a>
+  <body class="bg-gray-900 text-white font-sans min-h-screen">
+    <main class="px-4 py-8">
+      <!-- Header with logo -->
+      <div class="text-center mb-12">
+        <a href="/" class="inline-block mb-8">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-12 filter brightness-125" />
+        </a>
+        
+        <h1 class="text-3xl font-bold text-purple-400 mb-8">Profile</h1>
+      </div>
       
-      <h1>Profile</h1>
-      <div id="profile-info"></div>
-
-      <div class="posts">
-
+      <!-- Profile section - full width -->
+      <div id="profile-info" class="mb-12 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 border-2 border-purple-600 rounded-lg shadow-xl overflow-hidden">
+        <!-- Profile info will be injected here -->
       </div>
 
-      <form name="updateProfile">
-        <button>Update Profile</button>
-      </form>
+      <!-- Posts grid with wider layout -->
+      <div class="posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 max-w-[1920px] mx-auto">
+        <!-- Posts will be injected here -->
+      </div>
     </main>
   </body>
 </html>

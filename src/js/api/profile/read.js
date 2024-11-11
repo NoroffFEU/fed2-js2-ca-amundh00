@@ -61,18 +61,53 @@ export function displayProfileInfo(profileData) {
         return; 
     }
 
-    document.getElementById('profile-info').innerHTML = `
-        <div>
-            <h2>${profileData.name}</h2>
-            <div id="profileBanner">
-                <img src="${profileData.banner.url}" alt="${profileData.banner.alt}" />
+    document.getElementById('profile-info').innerHTML = displayProfile(profileData);
+}
+
+function displayProfile(profileData) {
+    return `
+        <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 rounded-lg shadow-xl overflow-hidden">
+            <!-- Banner Image - taller and full width -->
+            <div class="w-full h-[300px] relative overflow-hidden">
+                <img src="${profileData.banner.url}" 
+                     alt="${profileData.banner.alt}"
+                     class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/20 to-gray-900"></div>
             </div>
-            <img id="profilePhoto" src="${profileData.avatar.url}" alt="${profileData.avatar.alt}" />
-            <p>Email: ${profileData.email}</p>
-            <p>Bio: ${profileData.bio}</p>
-            <p>Followers: ${profileData._count.followers}</p>
-            <p>Following: ${profileData._count.following}</p>
-            <p>Posts: ${profileData._count.posts}</p>
+            
+            <!-- Avatar - larger and better positioned -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 -mt-28">
+                <div class="relative">
+                    <div class="absolute inset-0 rounded-full bg-purple-600/30 blur-md transform scale-110"></div>
+                    <img src="${profileData.avatar.url}" 
+                         alt="${profileData.avatar.alt}"
+                         class="relative w-40 h-40 rounded-full border-4 border-purple-600 shadow-2xl object-cover" />
+                </div>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="text-center mt-16 p-8">
+                <h2 class="text-3xl font-bold text-purple-400 mb-4">${profileData.name}</h2>
+                
+                <p class="text-purple-300 mb-2">${profileData.email}</p>
+                <p class="text-purple-300 mb-6 max-w-2xl mx-auto">${profileData.bio}</p>
+                
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-4 text-center border-t border-purple-600/30 pt-6 max-w-2xl mx-auto">
+                    <div class="p-4 hover:bg-purple-600/10 rounded-lg transition-colors duration-300">
+                        <p class="text-2xl font-bold text-purple-400">${profileData._count.followers}</p>
+                        <p class="text-sm text-purple-300">Followers</p>
+                    </div>
+                    <div class="p-4 hover:bg-purple-600/10 rounded-lg transition-colors duration-300">
+                        <p class="text-2xl font-bold text-purple-400">${profileData._count.following}</p>
+                        <p class="text-sm text-purple-300">Following</p>
+                    </div>
+                    <div class="p-4 hover:bg-purple-600/10 rounded-lg transition-colors duration-300">
+                        <p class="text-2xl font-bold text-purple-400">${profileData._count.posts}</p>
+                        <p class="text-sm text-purple-300">Posts</p>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -84,15 +119,44 @@ export function displayProfilePosts(postsData) {
         const mediaAlt = post.media ? post.media.alt : 'Default Alt Text';
 
         postsHtml += `
-            <div class="post" id="post-${post.id}">
-                <h3>${post.title || 'Untitled post'}</h3>
-                <p>${post.body || 'No content available'}</p>
-                <img src="${mediaUrl}" alt="${mediaAlt}" />
-                <p>Created: ${new Date(post.created).toLocaleDateString()}</p>
-                <p>Updated: ${new Date(post.updated).toLocaleDateString()}</p>
-                <div>
-                    <a href="/post/edit/?id=${post.id}" class="edit-post" data-post-id="${post.id}">Edit Post</a>
-                    <button class="delete-post" data-post-id="${post.id}">Delete Post</button>
+            <div class="group relative bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 
+                        border-2 border-purple-600 rounded-lg overflow-hidden shadow-lg 
+                        transition-all duration-300 ease-in-out
+                        hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/20
+                        hover:border-purple-400" id="post-${post.id}">
+                
+                <!-- Glow effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                            bg-gradient-to-r from-purple-600/10 to-blue-500/10"></div>
+
+                <!-- Image container -->
+                <div class="relative w-full h-[200px] overflow-hidden border-b border-purple-600/30">
+                    <img src="${mediaUrl}" 
+                         alt="${mediaAlt}" 
+                         class="w-full h-full object-cover max-w-[400px] max-h-[200px] mx-auto transition-transform duration-300 group-hover:scale-110" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6 relative bg-gradient-to-b from-gray-800/50 to-gray-900/50">
+                    <h3 class="text-xl font-bold text-purple-400 mb-3 truncate">${post.title || 'Untitled post'}</h3>
+                    <p class="text-sm text-purple-200/80 mb-4 line-clamp-3">${post.body || 'No content available'}</p>
+                    
+                    <!-- Meta info -->
+                    <div class="text-xs text-purple-400/60 border-t border-purple-600/20 pt-4 mt-4">
+                        <div class="flex justify-between mb-2">
+                            <span>Created: ${new Date(post.created).toLocaleDateString()}</span>
+                            <span>Updated: ${new Date(post.updated).toLocaleDateString()}</span>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="flex justify-end space-x-4 mt-4">
+                            <a href="/post/edit/?id=${post.id}" 
+                               class="text-purple-400 hover:text-purple-300 transition-colors duration-300">Edit Post</a>
+                            <button class="delete-post text-red-400 hover:text-red-300 transition-colors duration-300" 
+                                    data-post-id="${post.id}">Delete Post</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
